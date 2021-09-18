@@ -1,5 +1,5 @@
 # name
-user_name = str(input('Please your name: '))
+user_name = str(input('Please enter your name: '))
 user_surname = str(input('Please enter your surname: '))
 
 # years
