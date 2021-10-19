@@ -1,11 +1,20 @@
-import requests
-from bs4 import BeautifulSoup as BS
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.message import EmailMessage
 
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36'}
-url = 'https://www.google.com/search?q=rur+to+eur&oq=rur+to+eur&aqs=chrome..69i57j0i10l9.2158j1j7&sourceid=chrome&ie=UTF-8'
-r = requests.get(url, headers=headers)
-soup = BS(r.content, 'html.parser')
-price = float(soup.find('span', class_='DFlfde SwHCTb')['data-value'])
-print(float(user_input)/price)
+with smtplib.SMTP_SSL('smtp.zone.eu', 465) as server:
 
+
+
+    server.login('python@mrartful.com', 'qwe576!sdf')
+
+    msg = EmailMessage()
+    msg['From'] = 'python@mrartful.com'
+    msg['To'] = 'dmitrbelan@gmail.com'
+    msg['Subject'] = 'This is test email sent by python script'
+    msg.set_content('Sample email sent by python')
+    msg.add_alternative( f'<h1>Hello I am just a test email created by Python! TEST TEST TEST</h1>', subtype='html')
+
+    server.send_message(msg)
 
