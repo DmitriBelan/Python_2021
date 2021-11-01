@@ -1,0 +1,8 @@
+CREATE TABLE `new_database`.`user` (
+  `id` INT ZEROFILL NOT NULL,
+  `firstname` VARCHAR(45) NOT NULL,
+  `lastname` VARCHAR(45) NOT NULL,
+  `date_of_birth` DATE NOT NULL,
+  `date_added` DATETIME NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (`id`))
+COMMENT = 'User description table';
