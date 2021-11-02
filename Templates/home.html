@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} Home page {% endblock %}
+
+{% block content %}
+    {%for person in people%}
+        {% if person == 'Bob' %}
+            <p>{{ person}} is a good boy</p>
+        {% elif person == 'Mary' %}
+            <p>{{ person}} is a good girl</p>
+        {% else %}
+            <p>Hello {{person}} </p>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
