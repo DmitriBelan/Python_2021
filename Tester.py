@@ -1,40 +1,34 @@
-from flask import Flask, render_template, request, redirect, url_for, session
-from datetime import timedelta
+import hashlib
 
-app = Flask(__name__)
+password = 'Helloworld'
+hashed_pass = hashlib.md5(password.encode()).hexdigest() [0:6]
 
-app.secret_key = "helloworld"
-app.permanent_session_lifetime = timedelta(seconds=2)
+x = 0
 
-@app.route("/")
-def home():
-    title = 'Hello world'
-    people = ['Bob', 'Mary', 'Jack']
-    return render_template('home.html', mytitle=title, people=people)
-
-@app.route("/login", methods = ['POST','GET'])
-def login():
-
-    if request.method == 'POST':
-        session.permanent = True
-        user_name = request.form['nm']
-        session['user'] = user_name
-        return render_template('user.html', usr=user_name)
+while True:
+    pw = password + f'{x}'
+    hashed_pw = hashlib.md5(pw.encode()).hexdigest() [0:6 ]
+    if hashed_pass == hashed_pw:
+        print(pw)
+        break
+    x +=1
 
 
-    return render_template('Login.html')
 
-@app.route("/user")
-def user():
-    if 'user' in session:
-        user_name = session['user']
-        return render_template('user.html', usr=session['user'])
-    else:
-        return redirect(url_for('login'))
-@app.route("/logout")
-def logout():
-    return "<p>Logout page</p>"
 
-# Проверка на запуск только из материнского файла. Защита от воровства кода.
-if __name__=='__main__':
-    app.run(debug=True)
+
+
+
+# print(hashed_pass)
+#
+# user_input = input('Please enter password')
+# hashed_user_input = hashlib.md5(user_input.encode()).hexdigest()
+#
+# if hashed_user_input == hashed_pass:
+#     print(hashed_user_input)
+#     print(hashed_pass)
+#     print('OK')
+# else:
+#     print(hashed_user_input)
+#     print(hashed_pass)
+#     print('ERROR')

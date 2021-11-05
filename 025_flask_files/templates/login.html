@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<form action="#" method="post">
+    <p id="name-tag">Name:</p>
+    <p><input type="text" name="nm"></p>
+    <p>Password:</p>
+    <p><input type="password" name="pw"></p>
+    <p><input type="submit" value="Submit"></p>
+</form>
+<img src="{{ url_for('static', filename='images/python.png') }}" alt="Python" id="python-img">
+{% endblock %}
